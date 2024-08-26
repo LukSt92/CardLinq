@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CardLinq
 {
-    class Deck: ObservableCollection<Deck>
+    class Deck: ObservableCollection<Card>
     {
         private static Random random = new Random();
         public Deck()
@@ -29,7 +29,7 @@ namespace CardLinq
                 for (int value = 1; value <= 13; value++)
                     Add(new Card((Values)value, (Suits)suit));
         }
-        public void Shuffle()
+        public Deck Shuffle()
         {
             List<Card> copy = new List<Card>(this);
             Clear();
@@ -40,6 +40,7 @@ namespace CardLinq
                 copy.RemoveAt(index);
                 Add(card);
             }
+            return this;
         }
         public void Sort()
         {
